@@ -19,7 +19,7 @@ const AirQualityTable = () => {
 
   // Fetch states from backend
   useEffect(() => {
-    axios.get('http://localhost:5000/api/states')
+    axios.get('https://air-quality-data-backend.onrender.com/api/states')
       .then((response) => setStates(response.data))
       .catch((err) => console.log('Error fetching states:', err));
   }, []);
@@ -27,7 +27,7 @@ const AirQualityTable = () => {
   // Fetch stations for selected state
   useEffect(() => {
     if (filters.state) {
-      axios.get(`http://localhost:5000/api/stations/${filters.state}`)
+      axios.get(`https://air-quality-data-backend.onrender.com/api/stations/${filters.state}`)
         .then((response) => setStations(response.data))
         .catch((err) => console.log('Error fetching stations:', err));
     } else {
@@ -38,7 +38,7 @@ const AirQualityTable = () => {
   // Fetch air quality data (already flattened by backend)
   useEffect(() => {
     setTableLoading(true); // Start loader when data fetching begins
-    axios.get('http://localhost:5000/api/air-quality')
+    axios.get('https://air-quality-data-backend.onrender.com/api/air-quality')
       .then((response) => {
         setData(response.data);
         setFilteredData(response.data);
